@@ -38,13 +38,19 @@ public class FindRanksRecursive{
 
     public static <T extends Comparable<? super T>> T find(SortedListWithEnd<T> list1, int start1, int end1, SortedListWithEnd<T> list2, int start2, int end2, int k){
 
+        if (start1 > end1){
+            return list2.get(start2 + k - 1);
+        }
+        if (start2 > end2){
+            return list1.get(start1 + k - 1);
+        }
         if (k==1){ //base case
             return min(list1.get(start1), list2.get(start2));
         }
 
 
-        int ind1 = k/2; 
-        int ind2 = k/2; 
+        int ind1 = start1 + (k/2) - 1; 
+        int ind2 = start2 + (k/2) - 1; 
 
 
         T item1 = list1.get(ind1); 
